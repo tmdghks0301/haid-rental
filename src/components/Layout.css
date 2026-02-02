@@ -32,6 +32,19 @@
   margin: 0;
 }
 
-.header-spacer {
+.header-home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0;
+}
+
+.header-home:hover {
+  color: var(--primary);
 }

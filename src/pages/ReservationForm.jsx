@@ -3,7 +3,7 @@ import { getLicenses } from '../utils/licenseStorage'
 import './ReservationForm.css'
 
 const STEP_LABELS_WHEELCHAIR = ['이용·기간', '인수/반납', '운전자', '차량', '탑승 보조기기', '보험·요금']
-const STEP_LABELS_ACCIDENT = ['대차 기간', '이용 지역', '사고 차량', '사고 정보', '보험·추가', '차량·요금']
+const STEP_LABELS_ACCIDENT = ['대차 기간', '이용 지역', '사고 차량', '사고 정보', '보험·추가']
 
 const WHEELCHAIR_DEVICES = [
   { id: '휠체어', label: '휠체어' },
@@ -201,17 +201,12 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
   const baseFee = selectedCar ? selectedCar.price : 0
   const totalPrice = baseFee + (form.insurancePriceNum || 0)
 
-  const handleNext = (e) => {
-    e.preventDefault()
-    if (step < 6) {
-      setStep(step + 1)
-      return
-    }
+  const getCompletePayload = () => {
     const typeLabel = isWheelchair ? '휠체어카 렌트' : '사고 대차 렌트'
     const accidentDuration = !isWheelchair && (form.accidentPeriodDays === 'custom' ? form.accidentPeriodCustom : form.accidentPeriodDays ? `${form.accidentPeriodDays}일` : '')
-    onComplete({
+    return {
       type: typeLabel,
-      car: selectedCar?.name || '',
+      car: isWheelchair ? (selectedCar?.name || '') : (form.hopeCar || ''),
       usageType: form.usageType,
       duration: isWheelchair ? duration : accidentDuration,
       startDate: form.startDate,
@@ -222,15 +217,31 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
       returnLocation: form.sameReturn ? form.pickupLocation : form.returnLocation,
       estimatedPrice: isWheelchair ? `${totalPrice.toLocaleString()}원` : '상담 후 확정',
       insurance: INSURANCE_OPTIONS.find((i) => i.id === form.insuranceId)?.name || '',
-      // 사고 대차 전용
       region: form.region,
       insuranceCompany: form.insuranceCompany,
       accidentReportNo: form.accidentReportNo,
       hopeCar: form.hopeCar,
-    })
+    }
   }
 
-  const isLast = step === 6
+  const [showConfirm, setShowConfirm] = useState(false)
+
+  const maxStep = stepLabels.length
+  const handleNext = (e) => {
+    e.preventDefault()
+    if (step < maxStep) {
+      setStep(step + 1)
+      return
+    }
+    setShowConfirm(true)
+  }
+
+  const handleConfirmReservation = () => {
+    onComplete(getCompletePayload())
+    setShowConfirm(false)
+  }
+
+  const isLast = step === maxStep
 
   return (
     <div className="reservation-form-page">
@@ -632,40 +643,63 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
             </div>
           </div>
         )}
-        {step === 6 && !isWheelchair && (
-          <div className="form-step">
-            <h2 className="step-heading">차량 선택 (선택 또는 상담 후 확정)</h2>
-            <p className="form-hint">대차 가능 차량이 있을 경우 선택하거나, 상담을 통해 차량이 확정됩니다.</p>
-            <div className="accident-car-list-wrap">
-              <ul className="car-list">
-                {carList.map((car) => (
-                  <li key={car.id} className="car-list-item">
-                    <div className="car-thumb" />
-                    <div className="car-info">
-                      <span className="car-name">{car.name}</span>
-                      <span className="car-spec">{car.spec} · {car.price.toLocaleString()}원</span>
-                    </div>
-                    <label className="car-radio">
-                      <input type="radio" name="car" checked={form.carId === car.id} onChange={() => update('carId', car.id)} />
-                    </label>
-                  </li>
-                ))}
-              </ul>
-              <p className="consult-hint">또는 상담 후 차량 확정</p>
-            </div>
-            <div className="price-notice-box">
-              <p className="price-notice-text">사고 및 보험 처리 결과에 따라 요금이 확정됩니다.</p>
-            </div>
-          </div>
-        )}
-
         <div className="form-actions">
           <span />
           <button type="submit" className="cta-button">
-            {step === 1 && isWheelchair ? '탑승 정보 입력하기 >' : isLast ? '예약 정보 확인' : '다음'}
+            {step === 1 && isWheelchair ? '탑승 정보 입력하기 >' : isLast ? '예약 요청하기' : '다음'}
           </button>
         </div>
       </form>
+
+      {showConfirm && (() => {
+        const summary = getCompletePayload()
+        return (
+          <div className="confirm-overlay" onClick={() => setShowConfirm(false)} aria-hidden="true">
+            <div className="confirm-popup" onClick={(e) => e.stopPropagation()}>
+              <p className="confirm-message">예약 하시겠습니까?</p>
+              <div className="confirm-summary">
+                <div className="confirm-summary-row"><span className="confirm-summary-label">예약 유형</span><span>{summary.type}</span></div>
+                {isWheelchair && (
+                  <div className="confirm-summary-row"><span className="confirm-summary-label">이용 형태</span><span>{summary.usageType || '-'}</span></div>
+                )}
+                <div className="confirm-summary-row">
+                  <span className="confirm-summary-label">이용 기간</span>
+                  <span>
+                    {isWheelchair && summary.startDate && summary.startTime && summary.endDate && summary.endTime
+                      ? `${summary.startDate} ${summary.startTime} ~ ${summary.endDate} ${summary.endTime}`
+                      : (summary.duration || '-')}
+                  </span>
+                </div>
+                {isWheelchair && (
+                  <>
+                    <div className="confirm-summary-row"><span className="confirm-summary-label">인수 장소</span><span>{summary.pickupLocation || '-'}</span></div>
+                    <div className="confirm-summary-row"><span className="confirm-summary-label">반납 장소</span><span>{summary.returnLocation || '-'}</span></div>
+                  </>
+                )}
+                {!isWheelchair && (
+                  <div className="confirm-summary-row"><span className="confirm-summary-label">이용 지역</span><span>{summary.region || '-'}</span></div>
+                )}
+                <div className="confirm-summary-row">
+                  <span className="confirm-summary-label">{isWheelchair ? '차량' : '희망 차량'}</span>
+                  <span>{summary.car || summary.hopeCar || '-'}</span>
+                </div>
+                <div className="confirm-summary-row">
+                  <span className="confirm-summary-label">예상 요금</span>
+                  <span>{summary.estimatedPrice && summary.estimatedPrice !== '상담 후 확정' ? summary.estimatedPrice : '-'}</span>
+                </div>
+                <div className="confirm-summary-row"><span className="confirm-summary-label">보험</span><span>{summary.insurance || '-'}</span></div>
+                {!isWheelchair && (
+                  <div className="confirm-summary-row"><span className="confirm-summary-label">보험사</span><span>{summary.insuranceCompany || '-'}</span></div>
+                )}
+              </div>
+              <div className="confirm-actions">
+                <button type="button" className="btn-cancel" onClick={() => setShowConfirm(false)}>취소</button>
+                <button type="button" className="cta-button" onClick={handleConfirmReservation}>확인</button>
+              </div>
+            </div>
+          </div>
+        )
+      })()}
     </div>
   )
 }

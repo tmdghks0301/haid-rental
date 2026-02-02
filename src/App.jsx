@@ -188,7 +188,7 @@ function App() {
 
   return (
     <div className="app">
-      {showHeader && <Layout onBack={onBack} title={screen === SCREENS.LICENSE_ENTRY || screen === SCREENS.LICENSE_FORM ? '면허정보' : screen === SCREENS.SERVICE || screen === SCREENS.RESERVATION ? '예약' : screen === SCREENS.RESERVATION_STATUS ? '결제' : screen === SCREENS.IN_USE ? '이용 중' : screen === SCREENS.USE_COMPLETE ? '이용 완료' : '헤이드 렌트카'} />}
+      {showHeader && <Layout onBack={onBack} onHome={goHome} title={screen === SCREENS.LICENSE_ENTRY || screen === SCREENS.LICENSE_FORM ? '면허정보' : screen === SCREENS.SERVICE || screen === SCREENS.RESERVATION ? '예약' : screen === SCREENS.RESERVATION_STATUS ? '결제' : screen === SCREENS.IN_USE ? '이용 중' : screen === SCREENS.USE_COMPLETE ? '이용 완료' : '헤이드 렌트카'} />}
       <main className="main">
         {renderScreen()}
       </main>
