@@ -1,17 +1,12 @@
 .use-complete {
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 32px;
-}
-
-.loading {
   text-align: center;
-  padding: 48px 0;
-  color: var(--text-secondary);
 }
 
-.complete-icon {
+.use-complete .complete-icon {
   width: 64px;
   height: 64px;
   background: var(--primary);
@@ -25,65 +20,71 @@
   margin-bottom: 20px;
 }
 
-.complete-title {
-  font-size: 1.4rem;
+.use-complete .complete-title {
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--text);
-  text-align: center;
   margin-bottom: 8px;
 }
 
-.complete-desc {
-  font-size: 1rem;
+.use-complete .complete-desc {
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .summary-section {
   width: 100%;
   background: var(--white);
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px;
   margin-bottom: 24px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  text-align: left;
 }
 
 .section-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
 }
 
-.summary-list {
+.use-complete .summary-list {
   list-style: none;
 }
 
-.summary-list li {
+.use-complete .summary-list li {
   display: flex;
   justify-content: space-between;
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.summary-list li:last-child {
+.use-complete .summary-list li:last-child {
   border-bottom: none;
 }
 
-.summary-list .label {
+.use-complete .summary-list .label {
   font-size: 0.9rem;
   color: var(--text-secondary);
 }
 
-.summary-list .value {
-  font-size: 0.95rem;
+.use-complete .summary-list .value {
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text);
 }
 
 .use-complete .cta-button {
   width: 100%;
+  max-width: 280px;
+}
+
+.loading {
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--text-secondary);
 }

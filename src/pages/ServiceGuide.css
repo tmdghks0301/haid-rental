@@ -1,21 +1,22 @@
 .service-guide {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 140px);
+  min-height: 100%;
+  padding: 0 20px 24px;
 }
 
 .service-header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .service-icon {
-  font-size: 3rem;
-  margin-bottom: 12px;
+  font-size: 2.5rem;
+  margin-bottom: 8px;
 }
 
 .service-title {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--text);
 }
@@ -25,7 +26,7 @@
 }
 
 .service-section {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .section-label {
@@ -34,13 +35,13 @@
   color: var(--primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .section-text {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .flow-steps {
@@ -53,42 +54,26 @@
   border-radius: 10px;
   font-weight: 600;
   color: var(--primary);
-  font-size: 0.95rem;
-}
-
-.flow-step {
-  white-space: nowrap;
+  font-size: 0.9rem;
 }
 
 .flow-arrow {
   color: var(--text-secondary);
-  font-weight: 700;
   font-size: 0.85rem;
 }
 
 .notice-list {
   padding-left: 20px;
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.8;
+  font-size: 0.9rem;
+  line-height: 1.7;
 }
 
 .notice-list li {
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
-.cta-button {
+.service-guide .cta-button {
   margin-top: auto;
   padding: 18px 24px;
-  background: var(--primary);
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 12px;
-  width: 100%;
-  transition: background 0.2s;
-}
-
-.cta-button:hover {
-  background: var(--primary-dark);
 }

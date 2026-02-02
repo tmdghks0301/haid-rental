@@ -1,0 +1,129 @@
+.license-entry-page {
+  padding: 24px 20px 32px;
+}
+
+.license-entry-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.license-entry-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.license-entry-agreement {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-align: left;
+  gap: 10px;
+}
+
+.agreement-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.agreement-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.agreement-text {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.agreement-arrow {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.license-entry-notices {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.notice-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.notice-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.license-entry-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-direct-input {
+  width: 100%;
+  padding: 16px;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.btn-direct-input:hover {
+  background: #e5e5e5;
+}
+
+.btn-camera {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-camera:hover {
+  opacity: 0.9;
+}
+
+.btn-camera-icon {
+  font-size: 1.2rem;
+}

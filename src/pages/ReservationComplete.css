@@ -1,14 +1,9 @@
 .reservation-complete {
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 32px;
-}
-
-.loading {
   text-align: center;
-  padding: 48px 0;
-  color: var(--text-secondary);
 }
 
 .complete-icon {
@@ -26,35 +21,34 @@
 }
 
 .complete-title {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--text);
-  text-align: center;
   margin-bottom: 8px;
 }
 
 .complete-desc {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .reservation-summary {
   width: 100%;
   background: var(--white);
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px;
   margin-bottom: 20px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  text-align: left;
 }
 
-.summary-title {
+.summary-heading {
   font-size: 1rem;
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 16px;
-  padding-bottom: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -66,7 +60,7 @@
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .summary-list li:last-child {
@@ -79,7 +73,7 @@
 }
 
 .summary-list .value {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text);
 }
@@ -87,15 +81,17 @@
 .notice-text {
   font-size: 0.8rem;
   color: var(--text-secondary);
-  line-height: 1.5;
   margin-bottom: 24px;
-  text-align: center;
+  line-height: 1.5;
 }
 
 .reservation-complete .cta-button {
   width: 100%;
+  max-width: 280px;
 }
 
-.cta-with-arrow {
-  font-size: 1rem;
+.loading {
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--text-secondary);
 }

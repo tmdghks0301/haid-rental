@@ -1,18 +1,316 @@
 .reservation-form-page {
+  padding: 0 20px 24px;
   padding-bottom: 32px;
 }
 
+.progress-wrap {
+  margin-bottom: 20px;
+  padding: 12px;
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.progress-stepper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.progress-step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.progress-step-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.progress-step-item.done .progress-step-dot {
+  background: var(--primary);
+  color: white;
+}
+
+.progress-step-item.active .progress-step-dot {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 0 0 2px rgba(97, 194, 30, 0.3);
+}
+
+.progress-step-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.progress-step-item.active .progress-step-label,
+.progress-step-item.done .progress-step-label {
+  color: var(--primary);
+}
+
+.progress-step-line {
+  position: absolute;
+  height: 2px;
+  background: var(--border);
+  top: 14px;
+  left: 50%;
+  right: -50%;
+  z-index: 0;
+}
+
+.progress-bar-bg {
+  height: 6px;
+  background: rgba(97, 194, 30, 0.15);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.reservation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-step {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .step-heading {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--text);
+  margin-bottom: 4px;
+}
+
+.subsection-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+/* Step 1: 이용시간 설정 (이미지 레이아웃) */
+.step-time-settings {
+  padding-bottom: 0;
+}
+
+.step-title-main {
+  font-size: 1.35rem;
+  margin-bottom: 16px;
+}
+
+.usage-type-segment {
+  display: flex;
+  gap: 0;
   margin-bottom: 20px;
+}
+
+.segment-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.segment-btn:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.segment-btn:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.segment-btn.active {
+  background: #e8e8e8;
+  color: var(--text);
+  border-color: #ddd;
+}
+
+.time-settings-box {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.time-setting-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.time-setting-row:last-child {
+  margin-bottom: 0;
+}
+
+.time-setting-row label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.time-inputs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.time-inputs .time-h,
+.time-inputs .time-m {
+  width: 52px;
+  padding: 10px 8px;
+  border: none;
+  border-bottom: 2px solid var(--border);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.time-inputs .time-h:focus,
+.time-inputs .time-m:focus {
+  outline: none;
+  border-bottom-color: var(--primary);
+}
+
+.time-unit {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-right: 4px;
+}
+
+.calendar-wrap {
+  margin-bottom: 16px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.calendar-nav {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.calendar-month {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.calendar-weekdays .weekday {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.calendar-weekdays .weekday.weekend {
+  color: var(--primary);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.calendar-day.other-month {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.calendar-day.in-range {
+  background: rgba(97, 194, 30, 0.2);
+  color: var(--text);
+}
+
+.calendar-day.selected,
+.calendar-day.in-range.selected {
+  background: var(--primary);
+  color: white;
+}
+
+.calendar-day.weekend:not(.selected):not(.in-range) {
+  color: var(--primary);
+}
+
+.reservation-summary-box {
+  padding: 14px 16px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.summary-duration {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.summary-range {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
 }
 
 .tabs {
   display: flex;
   gap: 0;
-  margin-bottom: 20px;
   background: var(--border);
   border-radius: 10px;
   padding: 4px;
@@ -20,7 +318,7 @@
 
 .tab {
   flex: 1;
-  padding: 12px 16px;
+  padding: 12px;
   border: none;
   background: none;
   font-weight: 600;
@@ -38,64 +336,197 @@
 
 .time-row {
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.time-row input {
-  flex: 1;
+.time-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.summary-box {
-  background: var(--bg);
-  border-radius: 12px;
-  padding: 16px;
-  margin-top: 16px;
+.time-block label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
 }
 
-.summary-line {
+.time-block input {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.duration-summary {
+  font-weight: 600;
+  color: var(--primary);
   font-size: 0.95rem;
+}
+
+.form-hint {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+/* 휠체어카: 면허번호 칸에 등록된 면허 선택 + 면허 등록 버튼 */
+.license-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: var(--white);
+}
+
+.btn-license-register-inline {
+  padding: 10px 14px;
+  background: var(--white);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-license-register-inline:hover {
+  background: rgba(97, 194, 30, 0.08);
+}
+
+.btn-license-register-inline.btn-license-only {
+  width: 100%;
+}
+
+.btn-address-search {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.btn-address-search:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(97, 194, 30, 0.06);
+}
+
+.address-selected {
+  margin-top: 8px;
+  font-size: 0.9rem;
   color: var(--text-secondary);
 }
 
-.summary-line.highlight {
-  font-weight: 600;
-  color: var(--primary);
-  margin-top: 6px;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-/* 탑승 보조기기 그리드 */
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+  background: var(--white);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.checkbox-label input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary);
+}
+
+.input-below {
+  margin-top: 8px;
+}
+
+.radio-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.radio-row label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.radio-row input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.input-with-btn {
+  display: flex;
+  gap: 8px;
+}
+
+.input-with-btn input {
+  flex: 1;
+}
+
+.btn-small {
+  padding: 12px 16px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
 .device-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  margin-bottom: 24px;
 }
 
 .device-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 16px 8px;
+  padding: 16px;
   border: 2px solid var(--border);
   border-radius: 12px;
   background: var(--white);
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  color: var(--text);
-  min-height: 88px;
-}
-
-.device-card:hover {
-  border-color: var(--primary-light);
 }
 
 .device-card.selected {
   border-color: var(--primary);
+  background: rgba(97, 194, 30, 0.08);
   color: var(--primary);
-  font-weight: 600;
-  background: rgba(97, 194, 30, 0.06);
 }
 
 .device-icon {
@@ -103,19 +534,6 @@
   margin-bottom: 6px;
 }
 
-.device-label {
-  text-align: center;
-  line-height: 1.2;
-}
-
-.char-count {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  text-align: right;
-  margin-top: 4px;
-}
-
-/* 이용 가능한 차량 리스트 */
 .car-list {
   list-style: none;
   border-top: 1px solid var(--border);
@@ -149,8 +567,8 @@
   color: var(--text);
 }
 
-.car-price {
-  font-size: 0.9rem;
+.car-spec {
+  font-size: 0.85rem;
   color: var(--text-secondary);
 }
 
@@ -160,74 +578,7 @@
   accent-color: var(--primary);
 }
 
-/* 차량 요약 + 보험 */
-.vehicle-summary-card {
-  display: flex;
-  gap: 16px;
-  padding: 16px;
-  background: var(--white);
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  margin-bottom: 20px;
-}
-
-.vehicle-thumb {
-  width: 100px;
-  height: 70px;
-  background: var(--border);
-  border-radius: 8px;
-  flex-shrink: 0;
-}
-
-.vehicle-detail {
-  flex: 1;
-}
-
-.vehicle-name {
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-
-.vehicle-fuel {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
-.usage-time-summary {
-  margin-bottom: 24px;
-}
-
-.subsection-title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 10px;
-}
-
-.usage-total {
-  font-size: 0.95rem;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-
-.usage-range {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-.insurance-section {
-  margin-bottom: 16px;
-}
-
-.insurance-note {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
-}
-
-.insurance-section .insurance-cards {
+.insurance-cards {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -243,10 +594,6 @@
   transition: border-color 0.2s;
 }
 
-.insurance-card:hover {
-  border-color: var(--primary-light);
-}
-
 .insurance-card.selected {
   border-color: var(--primary);
   background: rgba(97, 194, 30, 0.06);
@@ -256,14 +603,13 @@
   font-weight: 700;
   font-size: 1rem;
   color: var(--text);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .insurance-desc {
   font-size: 0.8rem;
   color: var(--text-secondary);
-  line-height: 1.4;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .insurance-price {
@@ -272,193 +618,158 @@
   color: var(--primary);
 }
 
-/* 진행률 바 */
-.progress-wrap {
-  margin-bottom: 28px;
+.price-footer {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(97, 194, 30, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(97, 194, 30, 0.2);
 }
 
-.progress-step-labels {
+.price-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px 12px;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 0.95rem;
+  color: var(--text);
 }
 
-.progress-step-label {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
-.progress-step-label.active {
+.price-row.total {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px solid rgba(97, 194, 30, 0.25);
+  font-weight: 700;
+  font-size: 1.05rem;
   color: var(--primary);
-  font-weight: 600;
 }
 
-.progress-bar-bg {
-  height: 8px;
-  background: var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background: var(--primary);
-  border-radius: 4px;
-  transition: width 0.3s ease;
-}
-
-.progress-text {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  text-align: right;
-}
-
-/* 단계별 폼 영역 */
-.form-step {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  min-height: 200px;
-}
-
-/* 하단 버튼 (이전 / 다음·제출) */
 .form-actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 28px;
-  padding-top: 20px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  padding-top: 16px;
   border-top: 1px solid var(--border);
 }
 
-.btn-prev {
-  padding: 14px 24px;
-  background: var(--white);
-  color: var(--text);
-  font-weight: 600;
-  border-radius: 12px;
+.form-actions .cta-button {
+  min-width: 160px;
+}
+
+/* 사고 대차: 대차 이용 기간 */
+.period-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.period-btn {
+  padding: 12px 20px;
   border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
 }
 
-.btn-prev:hover {
-  background: var(--bg);
+.period-btn.active {
+  background: #e8e8e8;
+  color: var(--text);
+  border-color: #ddd;
 }
 
-.form-submit-btn {
-  flex: 1;
-  max-width: 200px;
-  margin-left: auto;
+/* 휠체어: 인수/반납 장소 (지도 기반 CTA) */
+.location-card-placeholder {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  background: #fafafa;
 }
 
-.form-actions-single .form-submit-btn {
-  max-width: none;
-  margin-left: 0;
+.location-placeholder-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
 }
 
-.reservation-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.form-group label {
+.location-selected {
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text);
+  margin-bottom: 10px;
 }
 
-.required {
-  color: #e11d48;
+.location-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  padding: 14px 16px;
+.location-actions.return-location {
+  margin-top: 12px;
+}
+
+.location-input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
   border: 1px solid var(--border);
-  border-radius: 10px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.btn-pin {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
+.btn-pin:hover {
   border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(97, 194, 30, 0.06);
 }
 
-.form-group textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-.form-hint {
+/* 휠체어: 차량 카드 탑승 가능 보조기기 */
+.car-device-info {
+  display: block;
   font-size: 0.8rem;
   color: var(--text-secondary);
   margin-top: 4px;
 }
 
-.radio-group {
-  display: flex;
-  gap: 24px;
+/* 사고 대차: 차량·요금 안내 */
+.accident-car-list-wrap {
+  margin-bottom: 16px;
 }
 
-.radio-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 500;
-  cursor: pointer;
+.consult-hint {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 12px;
 }
 
-.radio-label input {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--primary);
+.price-notice-box {
+  padding: 14px 16px;
+  background: #f5f5f5;
+  border-radius: 12px;
 }
 
-.row-inputs {
-  display: flex;
-  gap: 12px;
-}
-
-.row-inputs input {
-  flex: 1;
-}
-
-.input-with-button {
-  display: flex;
-  gap: 8px;
-}
-
-.input-with-button input {
-  flex: 1;
-}
-
-.lookup-btn {
-  padding: 14px 20px;
-  background: var(--primary);
-  color: white;
-  font-weight: 600;
-  border-radius: 10px;
-  white-space: nowrap;
-}
-
-.lookup-btn:hover {
-  background: var(--primary-dark);
-}
-
-.reservation-form .cta-button {
-  margin-top: 0;
+.price-notice-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }

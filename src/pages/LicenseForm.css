@@ -1,0 +1,215 @@
+.license-form-page {
+  padding: 0 20px 32px;
+}
+
+/* 등록된 면허 요약 카드 (이미지 1 상단) */
+.license-card-summary {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  margin-bottom: 24px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.license-card-photo {
+  width: 80px;
+  height: 100px;
+  background: #e8e8e8;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.license-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.license-card-type {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.license-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.license-card-number {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
+}
+
+.license-card-name,
+.license-card-resident,
+.license-card-address {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.license-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+.license-card-serial {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.serial-icon {
+  font-size: 0.9rem;
+}
+
+/* 폼 */
+.license-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.license-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.license-form .form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.license-form .form-group input,
+.license-form .form-group select {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: var(--white);
+}
+
+.license-type-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.license-form .radio-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.license-number-row,
+.resident-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.license-region-select {
+  width: 90px;
+  flex-shrink: 0;
+}
+
+.license-number-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.input-separator {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.resident-front {
+  width: 100px;
+}
+
+.resident-back {
+  flex: 1;
+  min-width: 80px;
+}
+
+.date-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.date-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.date-field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.btn-address-search {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.btn-address-search:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(97, 194, 30, 0.06);
+}
+
+.address-selected {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.address-detail {
+  margin-top: 8px;
+}
+
+.license-form-cta {
+  width: 100%;
+  padding: 16px;
+  margin-top: 8px;
+  background: var(--primary);
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}
+
+.license-form-cta:hover {
+  opacity: 0.95;
+}
