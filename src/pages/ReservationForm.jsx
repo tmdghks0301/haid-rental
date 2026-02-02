@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react'
 import { getLicenses } from '../utils/licenseStorage'
 import './ReservationForm.css'
 
-const STEP_LABELS_WHEELCHAIR = ['이용·기간', '인수/반납', '운전자', '차량', '탑승 보조기기', '보험·요금']
+const STEP_LABELS_WHEELCHAIR = ['이용·기간', '인수/반납', '운전자', '탑승 보조기기', '차량', '보험·요금']
 const STEP_LABELS_ACCIDENT = ['대차 기간', '이용 지역', '사고 차량', '사고 정보', '보험·추가']
 
 const WHEELCHAIR_DEVICES = [
@@ -521,26 +521,26 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
           </div>
         )}
 
-        {/* Step 4: 휠체어 = 차량 선택(보조기기 요약) / 사고대차 = 사고 정보 */}
+        {/* Step 4: 휠체어 = 탑승 보조기기 선택 / 사고대차 = 사고 정보 */}
         {step === 4 && isWheelchair && (
           <div className="form-step">
-            <h2 className="step-heading">차량 선택</h2>
-            <p className="form-hint">휠체어카 전용 차량 · 탑승 가능 보조기기 정보를 확인해 주세요.</p>
-            <ul className="car-list">
-              {carList.map((car) => (
-                <li key={car.id} className="car-list-item">
-                  <div className="car-thumb" />
-                  <div className="car-info">
-                    <span className="car-name">{car.name}</span>
-                    <span className="car-spec">{car.spec} · {car.price.toLocaleString()}원</span>
-                    {car.deviceInfo && <span className="car-device-info">탑승 가능: {car.deviceInfo}</span>}
-                  </div>
-                  <label className="car-radio">
-                    <input type="radio" name="car" checked={form.carId === car.id} onChange={() => update('carId', car.id)} />
-                  </label>
-                </li>
-              ))}
-            </ul>
+            <h2 className="step-heading">탑승 보조기기 선택</h2>
+            <p className="form-hint">※ 보조기기 정보는 안전한 탑승 및 차량 매칭을 위해 필수 입력</p>
+            <div className="form-group">
+              <label>탑승 보조기기 유형 *</label>
+              <div className="device-grid">
+                {WHEELCHAIR_DEVICES.map((d) => (
+                  <button key={d.id} type="button" className={`device-card ${form.wheelchairDevice === d.id ? 'selected' : ''}`} onClick={() => update('wheelchairDevice', d.id)}>
+                    <span className="device-icon">♿</span>
+                    <span className="device-label">{d.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="form-group">
+              <label>특이사항 (선택)</label>
+              <textarea value={form.specialNotes} onChange={(e) => update('specialNotes', e.target.value)} placeholder="추가로 전달할 사항" rows={3} />
+            </div>
           </div>
         )}
         {step === 4 && !isWheelchair && (
@@ -570,26 +570,26 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
           </div>
         )}
 
-        {/* Step 5: 휠체어 = 휠체어카 전용 정보 / 사고대차 = 보험 정보 + 추가 요청 */}
+        {/* Step 5: 휠체어 = 차량 선택 / 사고대차 = 보험 정보 + 추가 요청 */}
         {step === 5 && isWheelchair && (
           <div className="form-step">
-            <h2 className="step-heading">탑승 보조기기 선택</h2>
-            <p className="form-hint">※ 보조기기 정보는 안전한 탑승 및 차량 매칭을 위해 필수 입력</p>
-            <div className="form-group">
-              <label>탑승 보조기기 유형 *</label>
-              <div className="device-grid">
-                {WHEELCHAIR_DEVICES.map((d) => (
-                  <button key={d.id} type="button" className={`device-card ${form.wheelchairDevice === d.id ? 'selected' : ''}`} onClick={() => update('wheelchairDevice', d.id)}>
-                    <span className="device-icon">♿</span>
-                    <span className="device-label">{d.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div className="form-group">
-              <label>특이사항 (선택)</label>
-              <textarea value={form.specialNotes} onChange={(e) => update('specialNotes', e.target.value)} placeholder="추가로 전달할 사항" rows={3} />
-            </div>
+            <h2 className="step-heading">차량 선택</h2>
+            <p className="form-hint">휠체어카 전용 차량 · 탑승 가능 보조기기 정보를 확인해 주세요.</p>
+            <ul className="car-list">
+              {carList.map((car) => (
+                <li key={car.id} className="car-list-item">
+                  <div className="car-thumb" />
+                  <div className="car-info">
+                    <span className="car-name">{car.name}</span>
+                    <span className="car-spec">{car.spec} · {car.price.toLocaleString()}원</span>
+                    {car.deviceInfo && <span className="car-device-info">탑승 가능: {car.deviceInfo}</span>}
+                  </div>
+                  <label className="car-radio">
+                    <input type="radio" name="car" checked={form.carId === car.id} onChange={() => update('carId', car.id)} />
+                  </label>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
         {step === 5 && !isWheelchair && (
