@@ -1,0 +1,146 @@
+.in-use {
+  padding-bottom: 32px;
+}
+
+.loading {
+  text-align: center;
+  padding: 48px 0;
+  color: var(--text-secondary);
+}
+
+.in-use-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.remaining-badge,
+.current-time-badge {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.return-deadline {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.car-plate-large {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.vehicle-image-wrap {
+  width: 100%;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--border);
+}
+
+.vehicle-image {
+  width: 100%;
+  padding-bottom: 56%;
+  background: linear-gradient(180deg, #e8e8e8 0%, #d0d0d0 100%);
+}
+
+.usage-details {
+  margin-bottom: 24px;
+}
+
+.usage-detail-list {
+  list-style: none;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.usage-detail-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.usage-detail-list li:last-child {
+  border-bottom: none;
+}
+
+.usage-detail-list .label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.usage-detail-list .value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.return-info {
+  margin-bottom: 24px;
+}
+
+.return-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.return-info-item:last-child {
+  border-bottom: none;
+}
+
+.return-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.return-info-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.return-info-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn-extend {
+  flex: 1;
+  padding: 18px 24px;
+  background: rgba(97, 194, 30, 0.15);
+  color: var(--primary);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-extend:hover {
+  background: rgba(97, 194, 30, 0.25);
+}
+
+.action-buttons .btn-return {
+  flex: 1;
+}

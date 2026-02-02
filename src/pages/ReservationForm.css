@@ -1,0 +1,464 @@
+.reservation-form-page {
+  padding-bottom: 32px;
+}
+
+.step-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 20px;
+  background: var(--border);
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: var(--white);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.time-row {
+  display: flex;
+  gap: 12px;
+}
+
+.time-row input {
+  flex: 1;
+}
+
+.summary-box {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.summary-line {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.summary-line.highlight {
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 6px;
+}
+
+/* 탑승 보조기기 그리드 */
+.device-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.device-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 8px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--white);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text);
+  min-height: 88px;
+}
+
+.device-card:hover {
+  border-color: var(--primary-light);
+}
+
+.device-card.selected {
+  border-color: var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+  background: rgba(97, 194, 30, 0.06);
+}
+
+.device-icon {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+
+.device-label {
+  text-align: center;
+  line-height: 1.2;
+}
+
+.char-count {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* 이용 가능한 차량 리스트 */
+.car-list {
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+
+.car-list-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.car-thumb {
+  width: 72px;
+  height: 48px;
+  background: var(--border);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.car-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.car-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.car-price {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.car-radio input {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--primary);
+}
+
+/* 차량 요약 + 보험 */
+.vehicle-summary-card {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.vehicle-thumb {
+  width: 100px;
+  height: 70px;
+  background: var(--border);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.vehicle-detail {
+  flex: 1;
+}
+
+.vehicle-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.vehicle-fuel {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.usage-time-summary {
+  margin-bottom: 24px;
+}
+
+.subsection-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.usage-total {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.usage-range {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.insurance-section {
+  margin-bottom: 16px;
+}
+
+.insurance-note {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.insurance-section .insurance-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.insurance-card {
+  text-align: left;
+  padding: 16px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--white);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.insurance-card:hover {
+  border-color: var(--primary-light);
+}
+
+.insurance-card.selected {
+  border-color: var(--primary);
+  background: rgba(97, 194, 30, 0.06);
+}
+
+.insurance-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.insurance-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.insurance-price {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* 진행률 바 */
+.progress-wrap {
+  margin-bottom: 28px;
+}
+
+.progress-step-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-bottom: 10px;
+}
+
+.progress-step-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.progress-step-label.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.progress-bar-bg {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+/* 단계별 폼 영역 */
+.form-step {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 200px;
+}
+
+/* 하단 버튼 (이전 / 다음·제출) */
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.btn-prev {
+  padding: 14px 24px;
+  background: var(--white);
+  color: var(--text);
+  font-weight: 600;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.btn-prev:hover {
+  background: var(--bg);
+}
+
+.form-submit-btn {
+  flex: 1;
+  max-width: 200px;
+  margin-left: auto;
+}
+
+.form-actions-single .form-submit-btn {
+  max-width: none;
+  margin-left: 0;
+}
+
+.reservation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.required {
+  color: #e11d48;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+  background: var(--white);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-hint {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.radio-group {
+  display: flex;
+  gap: 24px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.radio-label input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.row-inputs {
+  display: flex;
+  gap: 12px;
+}
+
+.row-inputs input {
+  flex: 1;
+}
+
+.input-with-button {
+  display: flex;
+  gap: 8px;
+}
+
+.input-with-button input {
+  flex: 1;
+}
+
+.lookup-btn {
+  padding: 14px 20px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.lookup-btn:hover {
+  background: var(--primary-dark);
+}
+
+.reservation-form .cta-button {
+  margin-top: 0;
+}

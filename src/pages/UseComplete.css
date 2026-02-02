@@ -1,0 +1,89 @@
+.use-complete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 32px;
+}
+
+.loading {
+  text-align: center;
+  padding: 48px 0;
+  color: var(--text-secondary);
+}
+
+.complete-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--primary);
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.complete-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.complete-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.summary-section {
+  width: 100%;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.section-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.summary-list {
+  list-style: none;
+}
+
+.summary-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.summary-list li:last-child {
+  border-bottom: none;
+}
+
+.summary-list .label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.summary-list .value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.use-complete .cta-button {
+  width: 100%;
+}

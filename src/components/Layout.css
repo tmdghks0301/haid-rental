@@ -1,0 +1,80 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: var(--white);
+  padding: 14px 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.header-icon:hover {
+  color: var(--primary);
+}
+
+.header-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.main {
+  flex: 1;
+  padding: 24px 20px;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .main {
+    padding: 32px 24px;
+  }
+}
+
+/* 데스크톱 앱 프레임 안에서 크기 고정 + 스크롤 */
+@media (min-width: 420px) {
+  .layout {
+    min-height: 0;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 28px;
+    overflow: hidden;
+  }
+  .layout .main {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+  }
+}
