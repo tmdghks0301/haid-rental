@@ -401,6 +401,39 @@
   width: 100%;
 }
 
+/* 등록된 면허 1개: 요약 + 변경 버튼 */
+.form-group .license-summary {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  background: rgba(97, 194, 30, 0.06);
+  border-radius: 8px;
+  border: 1px solid rgba(97, 194, 30, 0.2);
+}
+
+.license-select-inline {
+  margin-bottom: 10px;
+}
+
+.btn-license-change {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-license-change:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(97, 194, 30, 0.06);
+}
+
 .btn-address-search {
   width: 100%;
   padding: 12px 14px;

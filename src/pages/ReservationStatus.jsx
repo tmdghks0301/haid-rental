@@ -14,6 +14,8 @@ function ReservationStatus({ data, onPayment, onBack }) {
 
   if (!data) return <div className="loading">로딩 중...</div>
 
+  const isAccident = data.type === '사고 대차 렌트'
+
   const handlePayment = () => {
     onPayment()
   }
@@ -37,9 +39,30 @@ function ReservationStatus({ data, onPayment, onBack }) {
         <h2 className="section-label">예약 요약 정보</h2>
         <ul className="summary-list">
           <li><span className="label">렌트 유형</span><span className="value">{data.type}</span></li>
-          <li><span className="label">차량</span><span className="value">{data.car}</span></li>
-          <li><span className="label">이용 기간</span><span className="value">{data.duration || '-'}</span></li>
-          <li><span className="label">이용 요금</span><span className="value">{data.estimatedPrice}</span></li>
+          {isAccident ? (
+            <>
+              <li><span className="label">대차 이용 기간</span><span className="value">{data.duration || '-'}</span></li>
+              <li><span className="label">이용 지역</span><span className="value">{data.region || '-'}</span></li>
+              <li><span className="label">차량</span><span className="value">{data.car || '상담 후 확정'}</span></li>
+              {data.insuranceCompany && (
+                <li><span className="label">보험사</span><span className="value">{data.insuranceCompany}</span></li>
+              )}
+              {data.accidentReportNo && (
+                <li><span className="label">사고 접수 번호</span><span className="value">{data.accidentReportNo}</span></li>
+              )}
+              {data.hopeCar && (
+                <li><span className="label">희망 차량</span><span className="value">{data.hopeCar}</span></li>
+              )}
+              <li><span className="label">이용 요금</span><span className="value">{data.estimatedPrice || '상담 후 확정'}</span></li>
+            </>
+          ) : (
+            <>
+              <li><span className="label">차량</span><span className="value">{data.car}</span></li>
+              <li><span className="label">이용 기간</span><span className="value">{data.duration || '-'}</span></li>
+              <li><span className="label">이용 요금</span><span className="value">{data.estimatedPrice || '-'}</span></li>
+              <li><span className="label">보험</span><span className="value">{data.insurance || '-'}</span></li>
+            </>
+          )}
         </ul>
       </section>
 

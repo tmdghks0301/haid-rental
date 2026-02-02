@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react'
 import { getLicenses } from '../utils/licenseStorage'
 import './ReservationForm.css'
 
-const STEP_LABELS_WHEELCHAIR = ['이용·기간', '인수/반납', '운전자', '차량', '휠체어카 정보', '보험·요금']
+const STEP_LABELS_WHEELCHAIR = ['이용·기간', '인수/반납', '운전자', '차량', '탑승 보조기기', '보험·요금']
 const STEP_LABELS_ACCIDENT = ['대차 기간', '이용 지역', '사고 차량', '사고 정보', '보험·추가', '차량·요금']
 
 const WHEELCHAIR_DEVICES = [
@@ -123,6 +123,7 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
   const [form, setForm] = useState(initialForm)
   const [savedLicenses, setSavedLicenses] = useState([])
   const [selectedLicenseId, setSelectedLicenseId] = useState(null)
+  const [showLicenseSelect, setShowLicenseSelect] = useState(false)
   const [displayMonth, setDisplayMonth] = useState(() => new Date(new Date().getFullYear(), new Date().getMonth(), 1))
 
   useEffect(() => {
@@ -136,6 +137,12 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
       onClearPreFillLicense?.()
     }
   }, [isWheelchair, step, preFillLicense])
+
+  useEffect(() => {
+    if (isWheelchair && step === 3 && savedLicenses.length >= 1 && !selectedLicenseId) {
+      loadLicense(savedLicenses[0])
+    }
+  }, [isWheelchair, step, savedLicenses, selectedLicenseId])
 
   const update = (key, value) => setForm((p) => ({ ...p, [key]: value }))
 
@@ -215,6 +222,11 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
       returnLocation: form.sameReturn ? form.pickupLocation : form.returnLocation,
       estimatedPrice: isWheelchair ? `${totalPrice.toLocaleString()}원` : '상담 후 확정',
       insurance: INSURANCE_OPTIONS.find((i) => i.id === form.insuranceId)?.name || '',
+      // 사고 대차 전용
+      region: form.region,
+      insuranceCompany: form.insuranceCompany,
+      accidentReportNo: form.accidentReportNo,
+      hopeCar: form.hopeCar,
     })
   }
 
@@ -388,38 +400,8 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
         {/* Step 3: 휠체어 = 운전자 정보 / 사고대차 = 사고 차량 정보 */}
         {step === 3 && isWheelchair && (
           <div className="form-step">
-            <h2 className="step-heading">운전자 정보 (계약자 = 제1 운전자)</h2>
+            <h2 className="step-heading">운전자 정보</h2>
             <p className="form-hint">※ 면허 선택/등록 시 유효성 조회(정지/취소/만료 여부) 수행 · 입력 정보는 계약서 자동 생성에 사용</p>
-
-            {savedLicenses.length > 0 ? (
-              <div className="form-group">
-                <label>내 면허</label>
-                <select
-                  value=""
-                  onChange={(e) => {
-                    const id = e.target.value
-                    const lic = savedLicenses.find((l) => l.id === id)
-                    if (lic) loadLicense(lic)
-                    e.target.value = ''
-                  }}
-                  className="license-select"
-                >
-                  <option value="">선택하여 불러오기</option>
-                  {savedLicenses.map((lic) => (
-                    <option key={lic.id} value={lic.id}>
-                      {lic.name} · {lic.licenseNumber || lic.license} (사용 가능)
-                    </option>
-                  ))}
-                </select>
-              </div>
-            ) : (
-              <div className="form-group">
-                <label>면허 정보 *</label>
-                <button type="button" className="btn-license-register-inline btn-license-only" onClick={onOpenLicenseRegister}>
-                  면허 등록
-                </button>
-              </div>
-            )}
 
             <div className="form-group">
               <label>이름 *</label>
@@ -440,6 +422,58 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
               </button>
               {form.driverAddress && <p className="address-selected">{form.driverAddress}</p>}
             </div>
+
+            {savedLicenses.length === 0 ? (
+              <div className="form-group">
+                <label>면허 정보 *</label>
+                <button type="button" className="btn-license-register-inline btn-license-only" onClick={onOpenLicenseRegister}>
+                  면허 등록
+                </button>
+              </div>
+            ) : (
+              <div className="form-group">
+                <label>면허 정보</label>
+                {(() => {
+                  const selected = savedLicenses.find((l) => l.id === selectedLicenseId) || savedLicenses[0]
+                  return (
+                    <>
+                      <p className="license-summary">
+                        등록된 면허: {selected.name} · {selected.licenseType || '2종 보통'} · {selected.licenseNumber || selected.license} (사용 가능)
+                      </p>
+                      {showLicenseSelect && savedLicenses.length > 1 && (
+                        <select
+                          value={selectedLicenseId || ''}
+                          onChange={(e) => {
+                            const id = e.target.value
+                            const lic = savedLicenses.find((l) => l.id === id)
+                            if (lic) {
+                              loadLicense(lic)
+                              setShowLicenseSelect(false)
+                            }
+                          }}
+                          className="license-select license-select-inline"
+                        >
+                          {savedLicenses.map((lic) => (
+                            <option key={lic.id} value={lic.id}>
+                              {lic.name} · {lic.licenseNumber || lic.license} (사용 가능)
+                            </option>
+                          ))}
+                        </select>
+                      )}
+                      <button
+                        type="button"
+                        className="btn-license-change"
+                        onClick={() =>
+                          savedLicenses.length === 1 ? onOpenLicenseRegister() : setShowLicenseSelect((v) => !v)
+                        }
+                      >
+                        {savedLicenses.length === 1 ? '면허 추가 등록' : showLicenseSelect ? '선택 닫기' : '다른 면허로 변경'}
+                      </button>
+                    </>
+                  )
+                })()}
+              </div>
+            )}
 
             <div className="form-group">
               <label className="checkbox-label">
@@ -528,7 +562,7 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
         {/* Step 5: 휠체어 = 휠체어카 전용 정보 / 사고대차 = 보험 정보 + 추가 요청 */}
         {step === 5 && isWheelchair && (
           <div className="form-step">
-            <h2 className="step-heading">휠체어카 전용 정보</h2>
+            <h2 className="step-heading">탑승 보조기기 선택</h2>
             <p className="form-hint">※ 보조기기 정보는 안전한 탑승 및 차량 매칭을 위해 필수 입력</p>
             <div className="form-group">
               <label>탑승 보조기기 유형 *</label>
