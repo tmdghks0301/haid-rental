@@ -22,13 +22,14 @@
 
 .rent-type-cards {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 16px;
 }
 
 .rent-type-card {
   display: block;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   text-align: left;
   padding: 24px;
   background: var(--white);
