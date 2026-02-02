@@ -671,10 +671,10 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
                   </span>
                 </div>
                 {isWheelchair && (
-                  <>
-                    <div className="confirm-summary-row"><span className="confirm-summary-label">인수 장소</span><span>{summary.pickupLocation || '-'}</span></div>
-                    <div className="confirm-summary-row"><span className="confirm-summary-label">반납 장소</span><span>{summary.returnLocation || '-'}</span></div>
-                  </>
+                  <div className="confirm-summary-row">
+                    <span className="confirm-summary-label">인수/반납</span>
+                    <span>{[summary.pickupLocation || '-', summary.returnLocation || '-'].join(' → ')}</span>
+                  </div>
                 )}
                 {!isWheelchair && (
                   <div className="confirm-summary-row"><span className="confirm-summary-label">이용 지역</span><span>{summary.region || '-'}</span></div>
