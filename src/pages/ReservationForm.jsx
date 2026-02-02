@@ -646,7 +646,7 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
         <div className="form-actions">
           <span />
           <button type="submit" className="cta-button">
-            {step === 1 && isWheelchair ? '탑승 정보 입력하기 >' : isLast ? '예약 요청하기' : '다음'}
+            {step === 1 && isWheelchair ? '탑승 정보 입력하기' : isLast ? '예약 요청하기' : '다음'}
           </button>
         </div>
       </form>
