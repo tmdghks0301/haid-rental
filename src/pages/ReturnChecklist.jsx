@@ -3,7 +3,6 @@ import './ReturnChecklist.css'
 
 function ReturnChecklist({ data, onConfirm, onBack }) {
   const [locationYes, setLocationYes] = useState(true)
-  const [floorYes, setFloorYes] = useState(true)
   const [windowsOk, setWindowsOk] = useState(true)
   const [lightsOk, setLightsOk] = useState(true)
   const [belongingsOk, setBelongingsOk] = useState(true)
@@ -11,8 +10,7 @@ function ReturnChecklist({ data, onConfirm, onBack }) {
   if (!data) return <div className="loading">로딩 중...</div>
 
   const returnLocation = data.returnLocation || '라임프렌즈 주차장'
-  const isAccident = data.type === '사고 대차 렌트'
-  const allChecked = locationYes && floorYes && windowsOk && lightsOk && belongingsOk
+  const allChecked = locationYes && windowsOk && lightsOk && belongingsOk
 
   const handleConfirm = () => {
     onConfirm()
@@ -35,24 +33,6 @@ function ReturnChecklist({ data, onConfirm, onBack }) {
           </label>
         </div>
       </section>
-
-      {!isAccident && (
-        <section className="checklist-section">
-          <p className="checklist-question">해당 층에 반납하셨나요?</p>
-          <div className="checklist-options">
-            <label className="checklist-option">
-              <input type="radio" name="floor" checked={floorYes} onChange={() => setFloorYes(true)} />
-              <span className="option-check">✓</span>
-              <span>네</span>
-            </label>
-            <label className="checklist-option">
-              <input type="radio" name="floor" checked={!floorYes} onChange={() => setFloorYes(false)} />
-              <span className="option-check">✓</span>
-              <span>아니요</span>
-            </label>
-          </div>
-        </section>
-      )}
 
       <section className="checklist-section last-check">
         <h2 className="last-check-title">반납 전 마지막 확인</h2>
