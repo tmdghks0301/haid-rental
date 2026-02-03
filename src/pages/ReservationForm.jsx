@@ -687,11 +687,15 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
                   <span className="confirm-summary-label">{isWheelchair ? '차량' : '희망 차량'}</span>
                   <span>{summary.car || summary.hopeCar || '-'}</span>
                 </div>
-                <div className="confirm-summary-row">
-                  <span className="confirm-summary-label">예상 요금</span>
-                  <span>{summary.estimatedPrice && summary.estimatedPrice !== '상담 후 확정' ? summary.estimatedPrice : '-'}</span>
-                </div>
-                <div className="confirm-summary-row"><span className="confirm-summary-label">보험</span><span>{summary.insurance || '-'}</span></div>
+                {isWheelchair && (
+                  <>
+                    <div className="confirm-summary-row">
+                      <span className="confirm-summary-label">예상 요금</span>
+                      <span>{summary.estimatedPrice && summary.estimatedPrice !== '상담 후 확정' ? summary.estimatedPrice : '-'}</span>
+                    </div>
+                    <div className="confirm-summary-row"><span className="confirm-summary-label">보험</span><span>{summary.insurance || '-'}</span></div>
+                  </>
+                )}
                 {!isWheelchair && (
                   <div className="confirm-summary-row"><span className="confirm-summary-label">보험사</span><span>{summary.insuranceCompany || '-'}</span></div>
                 )}
