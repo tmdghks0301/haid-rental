@@ -83,6 +83,81 @@
   max-width: 280px;
 }
 
+/* 추가 요금 결제 (결제 페이지와 동일, 포인트 제외) */
+.additional-fee-section {
+  width: 100%;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.use-complete .payment-section {
+  margin-top: 0;
+}
+
+.use-complete .payment-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  margin-bottom: 12px;
+}
+
+.use-complete .payment-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 0.95rem;
+}
+
+.use-complete .payment-row.total {
+  font-weight: 700;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.use-complete .payment-amount {
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.use-complete .payment-method {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.use-complete .payment-method input {
+  accent-color: var(--primary);
+}
+
+.use-complete .terms-notice {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 12px 0;
+}
+
+.use-complete .payment-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 18px;
+}
+
+.use-complete .payment-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.additional-fee-paid {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0;
+  text-align: center;
+}
+
 .loading {
   padding: 48px 20px;
   text-align: center;

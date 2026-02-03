@@ -151,3 +151,161 @@
   text-align: center;
   color: var(--text-secondary);
 }
+
+/* 연장 모달 */
+.extend-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+.extend-modal {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 24px;
+  min-width: 300px;
+  max-width: 90vw;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+.extend-modal-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 12px;
+  text-align: center;
+}
+.extend-section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.extend-modal-hint {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+.extend-modal-hint.extend-available {
+  margin-bottom: 14px;
+  font-size: 0.85rem;
+}
+.extend-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.extend-info-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.extend-info-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.extend-info-value.fee {
+  color: var(--primary);
+}
+.extend-time-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+.extend-time-btn {
+  flex: 1;
+  min-width: calc(25% - 6px);
+  padding: 12px 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--white);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+.extend-time-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.extend-time-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.extend-time-btn.reset {
+  color: var(--text-secondary);
+}
+.extend-form-group {
+  margin-bottom: 16px;
+}
+.extend-form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.extend-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 1rem;
+}
+.extend-days-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.extend-day-btn {
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--white);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+.extend-day-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.extend-result {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 12px;
+}
+.extend-modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.extend-btn-cancel {
+  flex: 1;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+.extend-btn-confirm {
+  flex: 1;
+  padding: 14px;
+}
+.extend-btn-confirm:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

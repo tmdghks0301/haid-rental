@@ -6,6 +6,7 @@ import ReservationForm from './pages/ReservationForm'
 import ReservationComplete from './pages/ReservationComplete'
 import ReservationStatus from './pages/ReservationStatus'
 import InUse from './pages/InUse'
+import ReturnChecklist from './pages/ReturnChecklist'
 import UseComplete from './pages/UseComplete'
 import LicenseEntry from './pages/LicenseEntry'
 import LicenseForm from './pages/LicenseForm'
@@ -17,6 +18,7 @@ const SCREENS = {
   RESERVATION_COMPLETE: 'reservationComplete',
   RESERVATION_STATUS: 'reservationStatus',
   IN_USE: 'inUse',
+  RETURN_CHECKLIST: 'returnChecklist',
   USE_COMPLETE: 'useComplete',
   LICENSE_ENTRY: 'licenseEntry',
   LICENSE_FORM: 'licenseForm',
@@ -59,6 +61,10 @@ function App() {
 
   const goInUse = () => {
     setScreen(SCREENS.IN_USE)
+  }
+
+  const goReturnChecklist = () => {
+    setScreen(SCREENS.RETURN_CHECKLIST)
   }
 
   const goUseComplete = () => {
@@ -114,6 +120,7 @@ function App() {
     if (screen === SCREENS.SERVICE) goHome()
     else if (screen === SCREENS.RESERVATION_COMPLETE || screen === SCREENS.RESERVATION_STATUS) goHome()
     else if (screen === SCREENS.IN_USE || screen === SCREENS.USE_COMPLETE) goHome()
+    else if (screen === SCREENS.RETURN_CHECKLIST) setScreen(SCREENS.IN_USE)
     else goHome()
   }
 
@@ -161,8 +168,16 @@ function App() {
         return (
           <InUse
             data={reservationData}
-            onExtend={() => alert('연장 요청이 접수되었습니다. 상담 후 연장이 확정됩니다.')}
-            onReturn={goUseComplete}
+            onExtend={(updatedData) => setReservationData(updatedData)}
+            onReturn={goReturnChecklist}
+          />
+        )
+      case SCREENS.RETURN_CHECKLIST:
+        return (
+          <ReturnChecklist
+            data={reservationData}
+            onConfirm={goUseComplete}
+            onBack={onBack}
           />
         )
       case SCREENS.USE_COMPLETE:
@@ -188,7 +203,7 @@ function App() {
 
   return (
     <div className="app">
-      {showHeader && <Layout onBack={onBack} onHome={goHome} title={screen === SCREENS.LICENSE_ENTRY || screen === SCREENS.LICENSE_FORM ? '면허정보' : screen === SCREENS.SERVICE || screen === SCREENS.RESERVATION ? '예약' : screen === SCREENS.RESERVATION_STATUS ? '결제' : screen === SCREENS.IN_USE ? '이용 중' : screen === SCREENS.USE_COMPLETE ? '이용 완료' : '헤이드 렌트카'} />}
+      {showHeader && <Layout onBack={onBack} onHome={goHome} title={screen === SCREENS.LICENSE_ENTRY || screen === SCREENS.LICENSE_FORM ? '면허정보' : screen === SCREENS.SERVICE || screen === SCREENS.RESERVATION ? '예약' : screen === SCREENS.RESERVATION_STATUS ? '결제' : screen === SCREENS.IN_USE ? '이용 중' : screen === SCREENS.RETURN_CHECKLIST ? '반납 하기' : screen === SCREENS.USE_COMPLETE ? '이용 완료' : '헤이드 렌트카'} />}
       <main className="main">
         {renderScreen()}
       </main>

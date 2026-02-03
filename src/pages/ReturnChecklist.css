@@ -1,0 +1,140 @@
+.return-checklist {
+  padding: 24px 20px;
+  padding-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.checklist-section {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.checklist-section.last-check {
+  border-bottom: none;
+  padding-bottom: 16px;
+}
+
+.checklist-question {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.checklist-options {
+  display: flex;
+  gap: 20px;
+}
+
+.checklist-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.checklist-option input {
+  accent-color: var(--primary);
+}
+
+.option-check {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.checklist-option:has(input:checked) .option-check {
+  color: var(--primary);
+}
+
+.last-check-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.last-check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.last-check-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-question {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.item-options {
+  display: flex;
+  gap: 16px;
+}
+
+.item-options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.item-options input {
+  accent-color: var(--primary);
+}
+
+.item-options label:has(input:checked) {
+  color: var(--primary);
+}
+
+.checklist-info-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 0;
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.checklist-info-link:hover {
+  color: var(--primary);
+}
+
+.link-arrow {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.return-confirm-btn {
+  margin-top: auto;
+  padding: 18px;
+  width: 100%;
+}
+
+.return-confirm-btn.disabled,
+.return-confirm-btn:disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.loading {
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--text-secondary);
+}
