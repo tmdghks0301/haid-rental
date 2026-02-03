@@ -280,11 +280,6 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
           <div className="form-step step-time-settings">
             <h2 className="step-heading step-title-main">이용시간 설정</h2>
 
-            <div className="usage-type-segment">
-                <button type="button" className={`segment-btn ${form.usageType === '단기' ? 'active' : ''}`} onClick={() => update('usageType', '단기')}>단기이용</button>
-                <button type="button" className={`segment-btn ${form.usageType === '장기' ? 'active' : ''}`} onClick={() => update('usageType', '장기')}>장기이용</button>
-              </div>
-
             <div className="time-settings-box">
               <div className="time-setting-row">
                 <label>시작 시간</label>
