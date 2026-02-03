@@ -1,9 +1,16 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, Fragment } from 'react'
 import { getLicenses } from '../utils/licenseStorage'
 import './ReservationForm.css'
 
 const STEP_LABELS_WHEELCHAIR = ['이용·기간', '인수/반납', '운전자', '탑승 보조기기', '차량', '보험·요금']
 const STEP_LABELS_ACCIDENT = ['대차 기간', '이용 지역', '사고 차량', '사고 정보', '보험·추가']
+
+/* 진행률 바 4단계: 실제 step → progress 1~4 */
+const PROGRESS_LABELS = ['이용 기간', '예약 정보', '탑승 정보', '확인 및 결제']
+function getProgressStep(step, isWheelchair) {
+  if (isWheelchair) return step <= 1 ? 1 : step <= 3 ? 2 : step <= 5 ? 3 : 4
+  return step <= 1 ? 1 : step <= 2 ? 2 : step <= 4 ? 3 : 4
+}
 
 const WHEELCHAIR_DEVICES = [
   { id: '휠체어', label: '휠체어' },
@@ -242,26 +249,28 @@ function ReservationForm({ type, step: stepProp, onStepChange, onComplete, onBac
   }
 
   const isLast = step === maxStep
+  const progressStep = getProgressStep(step, isWheelchair)
 
   return (
     <div className="reservation-form-page">
       <div className="progress-wrap">
         <div className="progress-stepper">
-          {stepLabels.map((label, i) => {
+          {PROGRESS_LABELS.map((label, i) => {
             const n = i + 1
-            const done = n < step
-            const active = n === step
+            const done = n < progressStep
+            const active = n === progressStep
             return (
-              <div key={`${label}-${i}`} className={`progress-step-item ${done ? 'done' : ''} ${active ? 'active' : ''}`}>
-                <div className="progress-step-dot">{done ? '✓' : n}</div>
-                <span className="progress-step-label">{label}</span>
-                {i < stepLabels.length - 1 && <div className="progress-step-line" />}
-              </div>
+              <Fragment key={`progress-${n}`}>
+                <div className={`progress-step-item ${done ? 'done' : ''} ${active ? 'active' : ''}`}>
+                  <div className="progress-step-dot">{n}</div>
+                  <span className="progress-step-label">{label}</span>
+                </div>
+                {i < PROGRESS_LABELS.length - 1 && (
+                  <div className={`progress-step-line ${progressStep > n ? 'done' : ''}`} aria-hidden="true" />
+                )}
+              </Fragment>
             )
           })}
-        </div>
-        <div className="progress-bar-bg">
-          <div className="progress-bar-fill" style={{ width: `${(step / stepLabels.length) * 100}%` }} />
         </div>
       </div>
 
